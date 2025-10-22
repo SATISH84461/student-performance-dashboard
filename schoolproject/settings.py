@@ -31,7 +31,7 @@ ENVIRONMENT = os.getenv('DJANGO_ENV', 'local')
 DEBUG = True
 
 ALLOWED_HOSTS = [i for i in os.getenv('ALLOWED_HOSTS', '').split(',') if i]
-CSRF_TRUSTED_ORIGINS = [i for i in os.getenv('ALLOWED_HOSTS', '').split(',') if i]
+CSRF_TRUSTED_ORIGINS = [f'https://{i}' for i in os.getenv('ALLOWED_HOSTS', '').split(',') if i]
 
 
 
