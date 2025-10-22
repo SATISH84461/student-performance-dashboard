@@ -26,12 +26,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 ENVIRONMENT = os.getenv('DJANGO_ENV', 'local')
-print(os.environ)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = [i for i in os.getenv('ALLOWED_HOSTS', '').split(',') if i]
+CSRF_TRUSTED_ORIGINS = [i for i in os.getenv('ALLOWED_HOSTS', '').split(',') if i]
+
 
 
 # Application definition
@@ -103,7 +104,6 @@ else:
         }
     }
 
-print(f"DATABASES: {DATABASES}")
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
