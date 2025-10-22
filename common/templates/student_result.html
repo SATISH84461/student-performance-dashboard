@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Student Result{% endblock %}
+{% block content %}
+<div class="card shadow-sm p-4">
+    <h4 class="mb-4">Check Student Result</h4>
+    <form method="POST" id="upload-form">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <input type="text" name="student_name" id="student_name" class="form-control" placeholder="Student Name" required>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="class_name" id="class_name" class="form-control" placeholder="Class Name" required>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="section" id="section" class="form-control" placeholder="Section" required>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="exam_name" id ="exam_name" class="form-control" placeholder="Exam Name" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">View Result</button>
+    </form>
+    <div id="resultMessage" class="mt-3"></div>
+
+    {% if results %}
+        <hr>
+        <h5>Results for {{ student_name }}</h5>
+        <table class="table table-bordered mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>Subject</th>
+                    <th>Obtained Marks</th>
+                    <th>Total Marks</th>
+                    <th>Passing Marks</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in results %}
+                <tr>
+                    <td>{{ r.subject_name }}</td>
+                    <td>{{ r.obtained_marks }}</td>
+                    <td>{{ r.total_marks }}</td>
+                    <td>{{ r.passing_marks }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+
+<script src="{% static 'js/student_result.js' %}"></script>
+{% endblock %}
